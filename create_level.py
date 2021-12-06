@@ -63,7 +63,7 @@ Path(os.path.join(level_name, '{}a-example.txt'.format(level))).touch()
 print(f'Created dummy input files')
 
 if AOC_SESSION_COOKIE:
-    response = requests.get(f'https://adventofcode.com/2020/day/{level}/input', cookies={'session': AOC_SESSION_COOKIE})
+    response = requests.get(f'https://adventofcode.com/2021/day/{level}/input', cookies={'session': AOC_SESSION_COOKIE})
     if response.status_code == 200:
         with open(os.path.join(level_name, f'{level}-input.txt'), 'w') as fh:
             fh.write(response.text)

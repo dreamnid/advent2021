@@ -55,25 +55,25 @@ def find_low_points():
 def find_basin_size(row, col, seen=None):
     if seen is None:
         seen = set()
-    size = 0
+    size = 1
     cur_el = input[row][col]
     seen.add((row, col,))
     #print(row, col, input[row][col], False)
     if row > 0 and input[row-1][col] != 9 and input[row-1][col] > cur_el and (row-1, col,) not in seen:
         #print(row-1, col, input[row-1][col], True)
-        size += 1 + find_basin_size(row - 1, col, seen)
+        size += find_basin_size(row - 1, col, seen)
 
     if row < num_rows - 1 and input[row+1][col] != 9 and input[row+1][col] > cur_el and (row+1, col,) not in seen:
         #print(row+1, col, input[row+1][col], True)
-        size += 1 + find_basin_size(row + 1, col, seen)
+        size += find_basin_size(row + 1, col, seen)
 
     if col > 0 and input[row][col-1] != 9 and input[row][col-1] > cur_el and (row, col-1,) not in seen:
         #print(row, col-1, input[row][col-1], True)
-        size += 1 + find_basin_size(row, col - 1, seen)
+        size += find_basin_size(row, col - 1, seen)
 
     if col < num_cols - 1 and input[row][col+1] != 9 and input[row][col+1] > cur_el and (row, col+1,) not in seen:
         #print(row, col+1, input[row][col+1], True)
-        size += 1 + find_basin_size(row, col + 1, seen)
+        size += find_basin_size(row, col + 1, seen)
 
     return size
 
@@ -82,7 +82,7 @@ print('a', sum([1+input[row][col] for row, col in find_low_points()]))
 
 basin_sizes = list()
 for row, col in find_low_points():
-    basin_sizes.append(find_basin_size(row, col)+1)
+    basin_sizes.append(find_basin_size(row, col))
     #print(basin_sizes[-1])
     #print('--------------')
 
